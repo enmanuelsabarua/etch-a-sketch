@@ -6,8 +6,8 @@ let gridSize = 16;
 // Ask for the grid size
 setGrid.addEventListener('click', e => {
     do {
-        gridSize = +prompt('What numbers of square do you want per grid?');
-    } while (gridSize > 100);
+        gridSize = +prompt('What numbers of squares do you want per grid? (Max 100)');
+    } while (gridSize > 100 || gridSize <= 0);
 
     generateGrid();
 });
@@ -51,22 +51,47 @@ function generateGrid() {
 
     });
 
-    let rainbowActivate = 1;
+    // Draw random colors
     const rainbow = document.querySelector('#rainbow');
+    let rainbowActive = 1;
 
     rainbow.addEventListener('click', e => {
-        if (rainbowActivate) {
-            rainbowActivate = 0;
+        if (rainbowActive) {
+            rainbowActive = 0;
             e.target.textContent = 'Stop';
             drawRainbow(pixels);
         } else {
-            rainbowActivate = 1;
+            rainbowActive = 1;
             e.target.textContent = 'Rainbow';
             draw(pixels);
         }
     });
+
+    // Add shading
+    const shading = document.querySelector('#shading');
+    let shadingActive = 1;
+
+    shading.addEventListener('click', e => {
+        if (shadingActive) {
+            shadingActive = 0;
+            e.target.textContent = 'Stop';
+            drawShading(pixels);
+        } else {
+            shadingActive = 1;
+            e.target.textContent = 'Shading';
+            draw(pixels);
+        }
+    });
+
+    // Clean the sketchpad
+    const cleanBtn = document.querySelector('#clean');
+
+    cleanBtn.addEventListener('click', e => {
+        clean(pixels);
+    });
 }
 
+// Drawing functions
 function draw(pixels) {
     pixels.forEach(pixel => {
         
@@ -100,6 +125,30 @@ function drawRainbow(pixels) {
             pixel.classList.add('pixel-hover');
             pixel.style.backgroundColor = `rgb(${randomColor1}, ${randomColor2}, ${randomColor3})`;
         });
+        
+    });
+}
+
+function drawShading(pixels) {
+    
+    pixels.forEach(pixel => {
+        let shading = 255;
+
+        pixel.addEventListener('mouseover', e => {
+            shading -= (255 * 0.1);
+    
+            pixel.classList.add('pixel-hover');
+            pixel.style.backgroundColor = `rgb(${shading}, ${shading}, ${shading})`;
+        });
+        
+    });
+}
+
+
+function clean(pixels) {
+    pixels.forEach(pixel => {
+        
+        pixel.style.backgroundColor = `white`;
         
     });
 }
