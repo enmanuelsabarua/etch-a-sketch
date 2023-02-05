@@ -1,0 +1,56 @@
+body {
+    background-color: #03001C;
+    color: #B6EADA;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+}
+
+.app {
+    border-radius: 2rem;
+    background-color: #301E67;
+    padding: 2rem;
+    display: flex;
+}
+
+.options {
+    padding: 0 2rem 0 0;
+}
+
+#select-color {
+    background-color: transparent;
+    border: none;
+    width: 5rem;
+    height: 5rem;
+}
+
+.sketchpad {
+    background-color: white;
+    width: 550px;
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.pixel {
+    /* background-color: black; */
+    /* border: 1px solid white; */
+    flex: 0 1 calc(550px / 16);
+}
+
+.pixel-hover {
+    background-color: black;
+}
